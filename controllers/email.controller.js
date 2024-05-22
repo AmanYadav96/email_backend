@@ -3,6 +3,7 @@ const { email } = require("../utils");
 const sendEmail = async (req, res) => {
   try {
     const response = await email.send(req.body);
+    console.log(req);
     if (response) {
       console.log(response);
     }

@@ -1,7 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 const rateLimit = require("express-rate-limit");
-const { emailController } = require("./controllers");
+const { emailRoutes } = require("./routes");
 
 const app = express();
 
@@ -19,6 +19,6 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: `Index Route For Email Backend` });
 });
 
-app.post("/send-email", emailController.sendEmail);
+app.use("/api", emailRoutes);
 
 module.exports = app;
