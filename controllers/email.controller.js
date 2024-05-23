@@ -6,12 +6,12 @@ const sendEmail = async (req, res) => {
     if (response.success) {
       res.status(200).json({
         message: "Email Sent Successfully",
-        response: response.response, 
+        response: response.response,
       });
     } else {
       res
         .status(400)
-        .json({ message: " Email Sending Failed", error: response.error });
+        .json({ message: "Email Sending Failed", error: response.error });
     }
   } catch (error) {
     console.log(error.message);
