@@ -63,15 +63,14 @@ const send = async (payload) => {
     html: htmlContent,
   };
 
-  await transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email:", error);
-      return error;
-    } else {
-      console.log("Email sent:", info.response);
-      return info;
-    }
-  });
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent:", info.response);
+    return { success: true, response: info.response };
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return { success: false, error: error.message };
+  }
 };
 
 module.exports = { send };
